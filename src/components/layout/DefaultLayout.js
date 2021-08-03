@@ -239,7 +239,11 @@ export default function Dashboard() {
                   )}
                 </ListItem>
                 <Collapse in={openNest === index} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
+                  <List 
+                  style={{backgroundColor:'white'}}
+                  component="div"
+                   disablePadding
+                   >
                     {item.children &&
                       item.children.map((item, index) => (
                         <ListItem
