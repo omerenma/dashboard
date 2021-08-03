@@ -36,6 +36,7 @@ import {
   SettingsApplications,
 } from "@material-ui/icons";
 import { listItem } from "../MenuList";
+import { DashboardIcon } from "../icons/icons";
 
 function Copyright() {
   return (
@@ -215,11 +216,25 @@ export default function Dashboard() {
         }}
         open={open}
       >
-        <div className={classes.toolbarIcon}>
+        {/* <div className={classes.toolbarIcon}>
+          <DashboardIcon />
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
+        </div> */}
+
+        <div className={classes.toolbarIcon}>
+          <div style={{ display: "flex" }}>
+            <div style={{ position: "relative", left: "10px" }}>
+              <DashboardIcon />
+            </div>
+            <div style={{position:'relative', right:'47px', top:'20px', color:'#fff'}}>Dashboard</div>
+          </div>
+          <IconButton onClick={handleDrawerClose} style={{ color: "white" }}>
+            <ChevronLeftIcon />
+          </IconButton>
         </div>
+
         <Divider />
         <List>
           {listItem.map((item, index) => {
@@ -241,7 +256,7 @@ export default function Dashboard() {
                     </ListItemIcon>
                   )}
                 </ListItem>
-                <Collapse in={openNest === index} timeout="auto" unmountOnExit >
+                <Collapse in={openNest === index} timeout="auto" unmountOnExit>
                   <List
                     style={{ backgroundColor: "white" }}
                     component="div"

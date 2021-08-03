@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  DashboardIcon,
+  DashboardSettingIcon,
   Setting,
   ErrorIcon,
   HelpCenter,
@@ -13,6 +15,7 @@ import {
 } from "./icons/icons";
 
 export const listItem = [
+  // { name: "Dashboard", icon: <DashboardIcon /> },
   {
     name: "Configuration",
     icon: <Setting />,
