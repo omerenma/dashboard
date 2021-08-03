@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Collapse,
+} from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,12 +22,20 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 //import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "./Charts";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
+import {
+  DashboardOutlined,
+  Person,
+  SettingsApplications,
+} from "@material-ui/icons";
+import { listItem } from "../MenuList";
 
 function Copyright() {
   return (
@@ -77,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   drawerPaper: {
+    background: "#161677",
     position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
@@ -119,14 +134,42 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+  const [state, setState] = useState({
+    open: false,
+    openNest: "",
+    prevNest: "",
+  });
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+  const handleClicks = (item, index) => {
+    if (item.children && state.openNest === index) {
+      setState((prev) => ({
+        ...prev,
+        openNest: "",
+      }));
+    } else if (item.children) {
+      setState((prev) => ({
+        ...prev,
+        openNest: index,
+      }));
+      !state.open && handleDrawerOpen();
+    } else {
+      return;
+    }
+  };
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const { openNest } = state;
 
   return (
     <div className={classes.root}>
@@ -134,11 +177,12 @@ export default function Dashboard() {
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
+        style={{ background: "#ffffff" }}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
-            color="inherit"
+            //color="#161677"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(
@@ -177,9 +221,57 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        {/* <List>{mainListItems}</List> */}
-        <Divider />
-        {/* <List>{secondaryListItems}</List> */}
+        <List>
+          {listItem.map((item, index) => {
+            return (
+              <span key={index}>
+                <ListItem
+                  button
+                  onClick={() => handleClicks(item, index)}
+                  //selected={location.pathname === item.link}
+                >
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.name} />
+                  {item.children && open && (
+                    <ListItemIcon className={classes.nestedIcon}>
+                      {openNest === index ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemIcon>
+                  )}
+                </ListItem>
+                <Collapse in={openNest === index} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {item.children &&
+                      item.children.map((item, index) => (
+                        <ListItem
+                          onClick={() => handleClicks(item, index)}
+                          // selected={location.pathname === item.link}
+                          //key={item.link}
+                        >
+                          <ListItemIcon>{item.icon}</ListItemIcon>
+
+                          {<ListItemText key={item.name} primary={item.name} />}
+                        </ListItem>
+                      ))}
+                  </List>
+                </Collapse>
+              </span>
+            );
+            // return (
+            //   <ListItem>
+            //     <ListItemIcon>{item.icon}</ListItemIcon>
+            //     <ListItemText primary={item.name} />
+            //     {item.children  && open && (
+            //       <ListItemIcon>
+            //         {
+            //           openNest === index ? (<ExpandLess/>) : (<ExpandMore/>)
+            //         }
+            //       </ListItemIcon>
+            //     )}
+            //   </ListItem>
+
+            // )
+          })}
+        </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
