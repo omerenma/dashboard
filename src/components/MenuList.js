@@ -19,7 +19,7 @@ export const listItem = [
       { name: "Banks", icon: <BankIcon />, link: "/bank" },
       { name: "Country", icon: <CountryIcon />, link: "/country" },
       { name: "HMOS", icon: <HMOS />, link: "/hmos" },
-      { name: "FFAS", icon: <PFAS />, link: "/pfas" },
+      { name: "PFAS", icon: <PFAS />, link: "/pfas" },
       { name: "Date format", icon: <Calender />, link: "/dateformat" },
       { name: "Locolu", icon: <Locolu />, link: "/locolu" },
     ],

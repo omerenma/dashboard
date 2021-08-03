@@ -260,40 +260,27 @@ export default function Dashboard() {
                 </Collapse>
               </span>
             );
-            // return (
-            //   <ListItem>
-            //     <ListItemIcon>{item.icon}</ListItemIcon>
-            //     <ListItemText primary={item.name} />
-            //     {item.children  && open && (
-            //       <ListItemIcon>
-            //         {
-            //           openNest === index ? (<ExpandLess/>) : (<ExpandMore/>)
-            //         }
-            //       </ListItemIcon>
-            //     )}
-            //   </ListItem>
-
-            // )
+         
           })}
         </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+        {/* <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
+            Chart
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
                 <Chart />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
+            Recent Deposits
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
                 <Deposits />
               </Paper>
             </Grid>
-            {/* Recent Orders */}
+            Recent Orders
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Orders />
@@ -303,7 +290,7 @@ export default function Dashboard() {
           <Box pt={4}>
             <Copyright />
           </Box>
-        </Container>
+        </Container> */}
       </main>
     </div>
   );
