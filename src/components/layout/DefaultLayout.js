@@ -231,19 +231,22 @@ export default function Dashboard() {
                   //selected={location.pathname === item.link}
                 >
                   <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.name} />
+                  <ListItemText
+                    primary={item.name}
+                    style={{ color: "white" }}
+                  />
                   {item.children && open && (
                     <ListItemIcon className={classes.nestedIcon}>
                       {openNest === index ? <ExpandLess /> : <ExpandMore />}
                     </ListItemIcon>
                   )}
                 </ListItem>
-                <Collapse in={openNest === index} timeout="auto" unmountOnExit>
-                  <List 
-                  style={{backgroundColor:'white'}}
-                  component="div"
-                   disablePadding
-                   >
+                <Collapse in={openNest === index} timeout="auto" unmountOnExit >
+                  <List
+                    style={{ backgroundColor: "white" }}
+                    component="div"
+                    disablePadding
+                  >
                     {item.children &&
                       item.children.map((item, index) => (
                         <ListItem
@@ -260,7 +263,6 @@ export default function Dashboard() {
                 </Collapse>
               </span>
             );
-         
           })}
         </List>
       </Drawer>

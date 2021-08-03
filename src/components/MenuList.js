@@ -9,6 +9,7 @@ import {
   PFAS,
   Calender,
   Locolu,
+  UserIcon,
 } from "./icons/icons";
 
 export const listItem = [
@@ -26,5 +27,9 @@ export const listItem = [
   },
   { name: "Error log", icon: <ErrorIcon /> },
   { name: "Help center", icon: <HelpCenter /> },
-  { name: "Settings", icon: <Setting />, children: [] },
+  {
+    name: "Settings",
+    icon: <Setting />,
+    children: [{ name: "Users", icon: <UserIcon /> }],
+  },
 ];
