@@ -7,7 +7,10 @@ import {
   ListItemIcon,
   ListItemText,
   Collapse,
+  Avatar,
+  createTheme,
 } from "@material-ui/core";
+
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import Box from "@material-ui/core/Box";
@@ -66,6 +69,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     padding: "0 8px",
     ...theme.mixins.toolbar,
+  },
+  bar: {
+    backgroundColor: "#fff",
+  },
+  collapse: {
+    color: "#fff",
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -131,6 +140,10 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  listItemName: {
+    //marginLeft: -10,
+    color: "#fff",
+  },
 }));
 
 export default function Dashboard() {
@@ -177,8 +190,11 @@ export default function Dashboard() {
       <CssBaseline />
       <AppBar
         position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
-        style={{ background: "#ffffff" }}
+        className={clsx(
+          classes.bar,
+          classes.appBar,
+          open && classes.appBarShift
+        )}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -202,11 +218,20 @@ export default function Dashboard() {
           >
             Dashboard
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          <Badge
+            badgeContent={12}
+            color="secondary"
+            style={{ marginRight: 50 , marginTop:20}}
+          >
+            <NotificationsIcon />
+          </Badge>
+          <Avatar
+            name="Foo bar"
+            size="30"
+            round={true}
+            src='"https://pixabay.com/get/gc92730262960c5b7f860a6a0cc62cd2f66269f1162a0e2fd5c59b32f33c9a31322c4d7921425ea28c83309010fbd3731b600a23a493ee9981bc5d678830d95d5_640.jpg'
+            color="#161677"
+          />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -228,7 +253,16 @@ export default function Dashboard() {
             <div style={{ position: "relative", left: "10px" }}>
               <DashboardIcon />
             </div>
-            <div style={{position:'relative', right:'47px', top:'20px', color:'#fff'}}>Dashboard</div>
+            <div
+              style={{
+                position: "relative",
+                right: "47px",
+                top: "20px",
+                color: "#fff",
+              }}
+            >
+              Dashboard
+            </div>
           </div>
           <IconButton onClick={handleDrawerClose} style={{ color: "white" }}>
             <ChevronLeftIcon />
@@ -247,16 +281,24 @@ export default function Dashboard() {
                 >
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText
-                    primary={item.name}
-                    style={{ color: "white" }}
-                  />
+                    className={(classes.collapse, classes.listItemName)}
+                  >
+                    {item.name}
+                  </ListItemText>
                   {item.children && open && (
-                    <ListItemIcon className={classes.nestedIcon}>
+                    <ListItemIcon
+                      className={(classes.nestedIcon, classes.collapse)}
+                    >
                       {openNest === index ? <ExpandLess /> : <ExpandMore />}
                     </ListItemIcon>
                   )}
                 </ListItem>
-                <Collapse in={openNest === index} timeout="auto" unmountOnExit>
+                <Collapse
+                  in={openNest === index}
+                  timeout="auto"
+                  unmountOnExit
+                  className={classes.bar}
+                >
                   <List
                     style={{ backgroundColor: "white" }}
                     component="div"
@@ -271,7 +313,15 @@ export default function Dashboard() {
                         >
                           <ListItemIcon>{item.icon}</ListItemIcon>
 
-                          {<ListItemText key={item.name} primary={item.name} />}
+                          {
+                            <ListItemText key={item.name}>
+                              <Typography
+                                style={{ fontSize: 11, color: "#161677" }}
+                              >
+                                {item.name}
+                              </Typography>{" "}
+                            </ListItemText>
+                          }
                         </ListItem>
                       ))}
                   </List>
