@@ -29,6 +29,8 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import {Switch, Route} from 'react-router-dom'
+import route from '../routes'
 //import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "./Charts";
 import Deposits from "./Deposits";
@@ -333,6 +335,21 @@ export default function Dashboard() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
+        <Switch>
+          {
+            route.map((route, index) => {
+              return route.component ? (
+                <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                name={route.name}
+                render={(props) => <route.component {...props} />}
+              />
+              ) : null
+            })
+          }
+        </Switch>
         {/* <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             Chart
