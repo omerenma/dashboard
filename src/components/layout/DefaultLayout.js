@@ -29,8 +29,8 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import {Switch, Route} from 'react-router-dom'
-import route from '../routes'
+import { Switch, Route } from "react-router-dom";
+import route from "../routes";
 //import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "./Charts";
 import Deposits from "./Deposits";
@@ -148,7 +148,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [state, setState] = useState({
@@ -156,7 +156,7 @@ export default function Dashboard() {
     openNest: "",
     prevNest: "",
   });
-
+  const { location } = props;
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -180,7 +180,13 @@ export default function Dashboard() {
       }));
       !state.open && handleDrawerOpen();
     } else {
-      return;
+      console.log(props.history, "Histroy");
+      console.log(item.link, "link");
+      props.history.push(item.link);
+      // // eslint-disable-next-line no-unused-expressions
+      state.open
+        ? state.open && handleDrawerClose()
+        : !state.open && handleDrawerOpen();
     }
   };
 
@@ -223,7 +229,7 @@ export default function Dashboard() {
           <Badge
             badgeContent={12}
             color="secondary"
-            style={{ marginRight: 50 , marginTop:20}}
+            style={{ marginRight: 50, marginTop: 20 }}
           >
             <NotificationsIcon />
           </Badge>
@@ -279,7 +285,7 @@ export default function Dashboard() {
                 <ListItem
                   button
                   onClick={() => handleClicks(item, index)}
-                  //selected={location.pathname === item.link}
+                  selected={location.pathname === item.link}
                 >
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText
@@ -310,8 +316,9 @@ export default function Dashboard() {
                       item.children.map((item, index) => (
                         <ListItem
                           onClick={() => handleClicks(item, index)}
-                          // selected={location.pathname === item.link}
-                          //key={item.link}
+                          selected={location.pathname === item.link}
+                          key={item.link}
+                          style={{cursor:'pointer'}}
                         >
                           <ListItemIcon>{item.icon}</ListItemIcon>
 
@@ -336,19 +343,17 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Switch>
-          {
-            route.map((route, index) => {
-              return route.component ? (
-                <Route
+          {route.map((route, index) => {
+            return route.component ? (
+              <Route
                 key={index}
                 path={route.path}
                 exact={route.exact}
                 name={route.name}
                 render={(props) => <route.component {...props} />}
               />
-              ) : null
-            })
-          }
+            ) : null;
+          })}
         </Switch>
         {/* <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>

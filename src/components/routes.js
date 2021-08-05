@@ -1,7 +1,7 @@
 import DefaultLayout from "./layout/DefaultLayout";
 import Banks from "./pages/Banks";
 import Country from "./pages/Country";
-import DateFormat from "./pages/DATEFORMAT";
+import DateFormat from "./pages/Dateformat";
 import ErrorLog from "./pages/ErrorLog";
 import HelpCenter from "./pages/HelpCenter";
 import HMOS from "./pages/HMOS";
@@ -10,58 +10,63 @@ import PFAS from "./pages/PFAS";
 import Users from "./pages/Users";
 
 const routes = [
+  //   {
+  //     path: "/",
+  //     exact: true,
+  //     name: "Home",
+  //     component: DefaultLayout,
+  //   },
   {
-    path: "/dashboard",
-    exact: true,
-    name: "Home",
-    component: DefaultLayout,
-  },
-  {
-    path: "/configuration/banks",
+    path: "/dashboard/configuration/banks",
     name: "Banks",
     component: Banks,
   },
   {
-    path: "/configuration/country",
+    path: "/dashboard/configuration/country",
     name: "Country",
     component: Country,
   },
   {
-    path: "/configuration/date-fomart",
+    path: "/dashboard/configuration/datefomart",
     name: "DataFormat",
     component: DateFormat,
   },
   {
-    path: "/configuration/errorlog",
+    path: "/dashboard/configuration/errorlog",
     name: "ErrorLog",
     component: ErrorLog,
   },
   {
-    path: "/configuration/help-center",
-    name: "Help Center",
-    component: HelpCenter,
-  },
-  {
-    path: "/configuration/hmos",
+    path: "/dashboard/configuration/hmos",
     name: "HMOS",
     component: HMOS,
   },
 
   {
-    path: "/configuration/localu",
+    path: "/dashboard/configuration/localu",
     name: "Localu",
     component: Localu,
   },
   {
-    path: "/configuration/pfas",
+    path: "/dashboard/configuration/pfas",
     name: "PFAS",
     component: PFAS,
   },
 
   {
-    path: "/configuration/users",
+    path: "/dashboard/users",
     name: "Users",
     component: Users,
+  },
+  {
+    path: "/dashboard/error-log",
+    name: "Error Log",
+    component: ErrorLog,
+  },
+  {
+    path: "/dashboard/configuration/help-center",
+    name: "Help Center",
+    component: HelpCenter,
   },
 ];
 
