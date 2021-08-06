@@ -10,12 +10,12 @@ import PFAS from "./pages/PFAS";
 import Users from "./pages/Users";
 
 const routes = [
-  //   {
-  //     path: "/",
-  //     exact: true,
-  //     name: "Home",
-  //     component: DefaultLayout,
-  //   },
+  // {
+  //   path: "/settings",
+  //   // exact: true,
+  //   name: "Settings",
+  //   component: Users,
+  // },
   {
     path: "/dashboard/configuration/banks",
     name: "Banks",

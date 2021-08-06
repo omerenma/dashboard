@@ -11,7 +11,9 @@ function App() {
   return (
     <Router history={history}>
       <div className="App">
+        <Switch>
         <Route path="/dashboard" component={DefaultLayout} />
+        </Switch>
         {/* <DefaultLayout /> */}
       </div>
     </Router>
