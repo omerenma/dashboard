@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import {
   makeStyles,
@@ -30,18 +30,16 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { Switch, Route } from "react-router-dom";
-import route from "../routes";
-//import { mainListItems, secondaryListItems } from "./listItems";
-import Chart from "./Charts";
-import Deposits from "./Deposits";
-import Orders from "./Orders";
 import {
   DashboardOutlined,
   Person,
   SettingsApplications,
+  AccessTimeSharp,
+  CalendarTodaySharp,
 } from "@material-ui/icons";
 import { listItem } from "../MenuList";
-import { DashboardIcon } from "../icons/icons";
+import route from "../routes";
+import { DashboardIcon2 } from "../icons/icons";
 
 function Copyright() {
   return (
@@ -56,7 +54,7 @@ function Copyright() {
   );
 }
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,19 +62,25 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
+    position: "relattive",
+    top: "-10px",
   },
   toolbarIcon: {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
-    padding: "0 8px",
-    ...theme.mixins.toolbar,
+    // padding: "0 8px",
+    // ...theme.mixins.toolbar,
   },
   bar: {
     backgroundColor: "#fff",
   },
   collapse: {
     color: "#fff",
+  },
+  customBadge: {
+    backgroundColor: "#2196f3",
+    color: "red",
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -103,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   drawerPaper: {
-    background: "#161677",
+    background: "#2196f3",
     position: "relative",
     whiteSpace: "nowrap",
     width: drawerWidth,
@@ -118,9 +122,9 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
+    width: theme.spacing(5),
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9),
+      width: theme.spacing(6),
     },
   },
   appBarSpacer: theme.mixins.toolbar,
@@ -145,6 +149,8 @@ const useStyles = makeStyles((theme) => ({
   listItemName: {
     //marginLeft: -10,
     color: "#fff",
+    position: "relative",
+    left: "-20px",
   },
 }));
 
@@ -156,6 +162,8 @@ export default function Dashboard(props) {
     openNest: "",
     prevNest: "",
   });
+  const [currentTime, setTime] = useState("");
+  const [currentDate, setDate] = useState("");
   const { location } = props;
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -193,6 +201,41 @@ export default function Dashboard(props) {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const { openNest } = state;
 
+  let time = () => {
+    let today = new Date();
+
+    let myTime = today.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    let months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    let thisMonth = months[today.getMonth()];
+    let myDate = today.getDate() + " " + thisMonth + ", " + today.getFullYear();
+
+    // this.setState({ currentTime: myTime, currentDate: myDate });
+    setTime(myTime);
+    setDate(myDate);
+  };
+
+  useEffect(() => {
+    time();
+  }, []);
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -203,6 +246,7 @@ export default function Dashboard(props) {
           classes.appBar,
           open && classes.appBarShift
         )}
+        style={{ height: "49px" }}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -217,6 +261,37 @@ export default function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
+
+          <div style={{ display: "flex" }}>
+            <div>
+              <AccessTimeSharp
+                style={{
+                  color: "#2196f3",
+                  width: "15px",
+                  height: "15px",
+                  position: "relative",
+                  top: 2,
+                  right: 5,
+                }}
+              />
+              <span style={{ color: "#2196f3" }}>{currentTime}</span>
+            </div>
+            <div style={{ marginLeft: 20 }}>
+              <CalendarTodaySharp
+                style={{
+                  color: "#2196f3",
+                  width: "15px",
+                  height: "15px",
+                  position: "relative",
+                  top: 2,
+                  right: 5,
+                }}
+              />
+              <span className={classes.momentDate} style={{ color: "#2196f3" }}>
+                {currentDate}
+              </span>
+            </div>
+          </div>
           <Typography
             component="h1"
             variant="h6"
@@ -227,11 +302,15 @@ export default function Dashboard(props) {
             Dashboard
           </Typography>
           <Badge
-            badgeContent={12}
+            badgeContent={4}
             color="secondary"
-            style={{ marginRight: 50, marginTop: 20 }}
+            style={{
+              marginRight: 50,
+              marginTop: 20,
+            }}
           >
-            <NotificationsIcon />
+            <NotificationsIcon style={{ color: "#161677" }} />
+            {/* <NotificationsIcon /> */}
           </Badge>
           <Avatar
             name="Foo bar"
@@ -249,22 +328,22 @@ export default function Dashboard(props) {
         }}
         open={open}
       >
-        {/* <div className={classes.toolbarIcon}>
-          <DashboardIcon />
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div> */}
-
         <div className={classes.toolbarIcon}>
-          <div style={{ display: "flex" }}>
-            <div style={{ position: "relative", left: "10px" }}>
-              <DashboardIcon />
+          <div
+            style={{
+              display: "flex",
+              position: "relative",
+              bottom: "10px",
+              // right: "-20px",
+            }}
+          >
+            <div style={{ position: "relative", right: "110px", top: 15 }}>
+              <DashboardIcon2 />
             </div>
             <div
               style={{
                 position: "relative",
-                right: "47px",
+                right: "49px",
                 top: "20px",
                 color: "#fff",
               }}
@@ -291,7 +370,9 @@ export default function Dashboard(props) {
                   <ListItemText
                     className={(classes.collapse, classes.listItemName)}
                   >
-                    {item.name}
+                    <Typography style={{ fontSize: "13px" }}>
+                      {item.name}
+                    </Typography>
                   </ListItemText>
                   {item.children && open && (
                     <ListItemIcon
@@ -318,14 +399,20 @@ export default function Dashboard(props) {
                           onClick={() => handleClicks(item, index)}
                           selected={location.pathname === item.link}
                           key={item.link}
-                          style={{cursor:'pointer'}}
+                          style={{ cursor: "pointer" }}
                         >
-                          <ListItemIcon>{item.icon}</ListItemIcon>
+                          <ListItemIcon style={{ marginLeft: 5 }}>
+                            {item.icon}
+                          </ListItemIcon>
 
                           {
                             <ListItemText key={item.name}>
                               <Typography
-                                style={{ fontSize: 11, color: "#161677" }}
+                                style={{
+                                  fontSize: 11,
+                                  color: "#161677",
+                                  marginLeft: -7,
+                                }}
                               >
                                 {item.name}
                               </Typography>{" "}
