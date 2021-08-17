@@ -37,3 +37,331 @@
   }
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+/* Dashboard */
+.tool_bar_header {
+  display: flex;
+  justify-content: space-around;
+}
+#dashboard_text {
+  position: relative;
+  top: 20px;
+  right: 22px;
+  color: white;
+}
+#configuration {
+  display: flex;
+  justify-content: space-evenly;
+  /* gap: 10px; */
+  margin-top: 20px;
+  margin-right: 10px;
+  width: 100%;
+}
+#configArrow {
+  cursor: pointer;
+  position: relative;
+}
+#configArrow2 {
+  cursor: pointer;
+  transform: rotate(180deg);
+  display: none;
+}
+#settingsArrow2 {
+  display: none;
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+#configText {
+  color: white;
+  margin-top: 5px;
+  position: relative;
+  right: 7px;
+}
+#dashboard_error {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 15px;
+  gap: 40px;
+}
+#errorText {
+  color: #fff;
+  position: relative;
+  right: 60px;
+  top: 5px;
+}
+#dashboard_help {
+  display: flex;
+  justify-content: space-evenly;
+  /* position: relative;
+  left: 10px;*/
+  margin-top: 15px;
+}
+#helpText {
+  color: #fff;
+  position: relative;
+  right: 30px;
+  top: 5px;
+}
+
+#dashboard_settings {
+  position: relative;
+  left: 15px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-evenly;
+}
+#settingText {
+  color: #fff;
+  position: relative;
+  right: 15px;
+  top: 4px;
+}
+#settingsArrow {
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+  right: 10px;
+}
+.config-details {
+  display: none;
+}
+.config-details-title {
+  margin-top: 2px;
+}
+.config-details2 {
+  display: block;
+}
+.active {
+  position: relative;
+  right: 15px;
+  background: #fff;
+  width: 240px;
+  height: 195px;
+  border: none;
+  display: block;
+  color: #000077;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  overflow: hidden;
+}
+.none-active {
+  position: relative;
+  right: 15px;
+  background: #fff;
+  width: 240px;
+  height: 195px;
+  border: none;
+  display: none;
+  color: #000077;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  overflow: hidden;
+}
+
+#bank {
+  display: flex;
+  justify-content: space-evenly;
+  /* border-bottom: 1px solid #c4c4c4; */
+  padding-top: 10px;
+  cursor: pointer;
+}
+#country {
+  display: flex;
+  justify-content: space-evenly;
+  /* border-bottom: 1px solid #c4c4c4; */
+  padding-top: 10px;
+  cursor: pointer;
+}
+#hmo {
+  display: flex;
+  justify-content: space-evenly;
+  /* border-bottom: 1px solid #c4c4c4; */
+  padding-top: 10px;
+  cursor: pointer;
+}
+#pfas {
+  display: flex;
+  justify-content: space-evenly;
+  /* border-bottom: 1px solid #c4c4c4; */
+  padding-top: 10px;
+  cursor: pointer;
+}
+#data-format {
+  display: flex;
+  justify-content: space-evenly;
+  /* border-bottom: 1px solid #c4c4c4; */
+  padding-top: 10px;
+  cursor: pointer;
+}
+#calender {
+  display: flex;
+  justify-content: space-evenly;
+  /* border-bottom: 1px solid #c4c4c4; */
+  padding-top: 10px;
+  cursor: pointer;
+}
+#localu {
+  display: flex;
+  justify-content: space-evenly;
+  /* border-bottom: 1px solid #c4c4c4; */
+  padding-top: 7px;
+  cursor: pointer;
+}
+#bank:hover {
+  background-color: #f4f4f4;
+}
+#country:hover {
+  background-color: #f4f4f4;
+}
+#hmo:hover {
+  background-color: #f4f4f4;
+}
+#pfas:hover {
+  background-color: #f4f4f4;
+}
+#calender:hover {
+  background-color: #f4f4f4;
+}
+#localu:hover {
+  background-color: #f4f4f4;
+}
+
+#banks {
+  position: relative;
+  right: 80px;
+}
+#country {
+  position: relative;
+  bottom: 20px;
+  left: 5px;
+}
+#countrys {
+  position: relative;
+  right: 78px;
+}
+#hmo {
+  position: relative;
+  bottom: 35px;
+  left: 3px;
+}
+#hmos {
+  position: relative;
+  right: 81px;
+  bottom: 5px;
+}
+#pfas {
+  position: relative;
+  bottom: 40px;
+  left: 5px;
+}
+#pfas-text {
+  position: relative;
+  right: 85px;
+  bottom: 5px;
+}
+#date-format {
+  position: relative;
+  right: 52px;
+}
+.icons {
+  position: relative;
+  bottom: 5px;
+  right: 30px;
+}
+#calender {
+  position: relative;
+  bottom: 45px;
+  left: 2px;
+}
+#localu {
+  position: relative;
+  left: 7px;
+  bottom: 40px;
+}
+#local {
+  position: relative;
+  right: 80px;
+  bottom: 3px;
+}
+.turnUp {
+  transform: rotate(180deg);
+}
+.turnDown {
+  transform: rotate(360deg);
+}
+.config-details-title {
+  font-size: 10px;
+  font-weight: bolder;
+}
+#dashboard_help {
+  position: relative;
+  right: 10px;
+  gap: 20px;
+}
+#dashboard_settings {
+  position: relative;
+}
+#settingText {
+  position: relative;
+  right: 35px;
+}
+
+.removeOverFlow {
+}
+#date-format-text {
+  position: relative;
+  right: 15px;
+  top: 1px;
+}
+
+.active-settings {
+  display: flex;
+  background-color: #fff;
+  gap: 20px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 27px;
+  color: #161677;
+  cursor: pointer;
+}
+
+.active-settings-none {
+  display: none;
+  background-color: #fff;
+  gap: 20px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 27px;
+  color: #161677;
+  cursor: pointer;
+}
+#users-text {
+  margin-top: 8px;
+  margin-left: 5px;
+}
+
+.settings-active {
+  display: flex;
+  background-color: #fff;
+  gap: 20px;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 27px;
+  color: #161677;
+  visibility: hidden;
+}
