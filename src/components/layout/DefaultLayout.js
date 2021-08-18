@@ -40,6 +40,7 @@ import {
 import { listItem } from "../MenuList";
 import route from "../routes";
 import { DashboardIcon2 } from "../icons/icons";
+import PopperComponent from "../pages/Popper";
 
 function Copyright() {
   return (
@@ -188,8 +189,6 @@ export default function Dashboard(props) {
       }));
       !state.open && handleDrawerOpen();
     } else {
-      console.log(props.history, "Histroy");
-      console.log(item.link, "link");
       props.history.push(item.link);
       // // eslint-disable-next-line no-unused-expressions
       state.open
@@ -247,6 +246,7 @@ export default function Dashboard(props) {
           open && classes.appBarShift
         )}
         style={{ height: "49px" }}
+        elevation={1}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -314,11 +314,13 @@ export default function Dashboard(props) {
           </Badge>
           <Avatar
             name="Foo bar"
-            size="30"
-            round={true}
+            size="20"
+            // round={true}
             src='"https://pixabay.com/get/gc92730262960c5b7f860a6a0cc62cd2f66269f1162a0e2fd5c59b32f33c9a31322c4d7921425ea28c83309010fbd3731b600a23a493ee9981bc5d678830d95d5_640.jpg'
             color="#161677"
+            style={{ marginRight: 20 }}
           />
+          <PopperComponent />
         </Toolbar>
       </AppBar>
       <Drawer
